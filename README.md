@@ -1,27 +1,21 @@
-# MyAngularApp
+# Example Angular App Using React Liveness Component
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+This project is based off other angular projects that show how to use react in angular like https://github.com/zackypick/react-in-angular
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Issues ran into while developing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- General Typescript Issues
+  - `skipLibCheck`
+    - If you'd like a general catch all solution turning on `skipLibCheck` in `compilerOptions` will prevent all TS issues
+  - `Cannot find name 'Long'`
+    - Install `long@4.0.0` and `@types/long@4.0.0` then add `"types": ["long"]` to tsconfig.json
+  - `Cannot find React`
+    - Default angular config doesn't like default imports which we use in the `FaceLivenessDetector` component. You can add `allowSyntheticDefaultImports` to tsconfig.json to fix this.
+  - `Cannot find name TContext`
+    - `xstate` uses the generic `TContext` which seems to have some issues in typescript@5, downgrading to typescript@4 which we use in `FaceLivenessDetector` seems to fix the issue
+- Browser issues with `process`
+  - The `FaceLivenessDetector` component allows for some env variable overrides (this may be changed in the future) which checks `process.env`. You will need to add a polyfill for `process.env` to fix this error.

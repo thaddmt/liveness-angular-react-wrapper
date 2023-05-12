@@ -2,6 +2,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "jsx": "react", // required for using react
+    "allowSyntheticDefaultImports": true, // required for using default imports
+    // "skipLibCheck": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -22,7 +25,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": ["long"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
